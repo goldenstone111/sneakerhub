@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "235570885156",
+    "firebase_url": "https://saneakerapp.firebaseio.com",
+    "project_id": "saneakerapp",
+    "storage_bucket": "saneakerapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235570885156:android:71e6ec9f636a4db93edeb1",
+        "android_client_info": {
+          "package_name": "io.ionic.startersaneakerapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235570885156-qjpc3c3r4gm35pe4oojobpc0esue233h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkxjNRILy-VQWWLfnz7N7l9ArQR2S1vYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235570885156-qjpc3c3r4gm35pe4oojobpc0esue233h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

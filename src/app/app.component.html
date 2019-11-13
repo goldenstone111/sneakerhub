@@ -1,0 +1,82 @@
+<ion-app>
+  <ion-menu
+    side="start"
+    type="overlay"
+    class="menu_css"
+    menuId="first"
+    (ionWillOpen)="getUserInfo()"
+  >
+    <ion-header class="menu_header" *ngIf="isUserLoggedIn">
+      <div class="profile_pic">
+        <img src="{{ user.picture }}" />
+      </div>
+      <h2>{{ user.name }}</h2>
+    </ion-header>
+    <ion-content *ngIf="isUserLoggedIn">
+      <ion-list>
+        <ion-item
+          *ngFor="let menuItem of appMenuItems"
+          lines="none"
+          (click)="openPage(menuItem)"
+        >
+          <img [src]="menuItem.icon" />
+          <p class="title">{{ menuItem.title }}</p>
+        </ion-item>
+        <ion-item lines="none" (click)="showLocation()">
+            <ion-icon name="pin" style="color: #bdbdbd;" ></ion-icon>
+          <p class="title">Location</p>
+        </ion-item>
+      </ion-list>
+      <ion-buttons class="logoutbtn" (click)="logOut()">
+        Log Out
+      </ion-buttons>
+    </ion-content>
+
+    <ion-header
+      class="menu_header"
+      *ngIf="!isUserLoggedIn"
+      style="background: #000000;"
+    >
+      <div class="profile_pic">
+        <img src="{{ defaultImageUrl }}" />
+      </div>
+      <h4>CIPHER</h4>
+    </ion-header>
+    <ion-content *ngIf="!isUserLoggedIn">
+      <ion-list>
+        <ion-item
+          *ngFor="let menuItem of Categories"
+          lines="none"
+          (click)="openhome(menuItem.tbl_category_id)"
+        >
+          <p class="title">{{ menuItem.tbl_category_name }}</p>
+        </ion-item>
+        <ion-item lines="none" (click)="events()">
+          <p class="title">Events</p>
+        </ion-item>
+        <ion-item
+        *ngFor="let menuItem of appMenuItemsWithoutLogin"
+        lines="none"
+        (click)="openPage(menuItem)"
+      >
+        <p class="title">{{ menuItem.title }}</p>
+      </ion-item>
+      <ion-item lines="none" (click)="showLocation()">
+        <p class="title">Location</p>
+      </ion-item>
+      <ion-item routerLink="/login" detail="false" >
+        <p style="margin-left: 15px;">Login</p>
+      </ion-item>
+      </ion-list>
+      <ion-buttons class="logoutbtn" (click)="homedemo()">
+        <label>Guest Page</label>
+      </ion-buttons>
+    </ion-content>
+    <ion-footer>
+      <ion-buttons class="chatbtn" (click)="presentActionSheet()">
+        <label>Chat</label>
+      </ion-buttons>
+    </ion-footer>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

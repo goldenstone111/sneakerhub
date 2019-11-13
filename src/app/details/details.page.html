@@ -1,0 +1,191 @@
+
+<ion-content class="shoes_details" no-padding>
+  <ion-grid no-padding *ngIf="productstatus === 'Item Not Found'">
+    <ion-row no-padding>
+      <ion-col size="12" no-padding  class="no_item">
+        <div>
+          <img src="../../assets/ohno.png" alt="" />
+        </div>
+        <h2>
+            Item Not Found
+        </h2>
+        <h3>
+            No item found with the respected barcode, Please try another barcode. 
+        </h3>
+      </ion-col>
+      <ion-col size="12" class="ion-text-center">
+        <ion-button class="no_item_btn" (click)="back()">
+          <ion-ripple-effect></ion-ripple-effect>
+          Back 
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid no-padding *ngIf="productstatus === 'Active'">
+    <ion-row no-padding>
+      <ion-col size="12" no-padding class="slider">
+        <ion-header no-border>
+          <ion-toolbar>
+            <ion-buttons slot="start" (click)="back()">
+              <img class="goback" src="../../assets/backwithicon.svg" />
+            </ion-buttons>
+            <ion-buttons slot="primary" (click)="search()">
+              <ion-button color="light">
+                <ion-icon slot="icon-only" name="search"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+          <div class="shoesimage">
+            <img
+              class="slideimage"
+              src="{{ postImage }}"
+              (click)="reviewProduct()"
+            />
+          </div>
+        </ion-header>
+      </ion-col>
+      <ion-col size="12" class="details_section">
+        <ion-row>
+          <ion-col size="8" class="name_price">
+            {{ productname }}
+          </ion-col>
+          <ion-col size="4" text-right class="name_price">
+            {{ productprice }}
+          </ion-col>
+          <ion-col size="12" class="description">
+            {{ description }}
+          </ion-col>
+          <ion-col size="12" text-center>
+            <ion-row>
+              <ion-col offset="3" size="6" class="submit">
+                <ion-buttons (click)="callPopUp()">
+                  <img src="../../assets/purchase.png" alt="" />
+                </ion-buttons>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col size="12" class="description nomargin">
+            <p>SKU: {{ sku }}</p>
+            <p *ngIf="prelesedate">release date : {{ relesedate }}</p>
+          </ion-col>
+          <ion-col size="12" class="name_price" *ngIf="colorvalue">
+            <p>colors</p>
+            <div class="color-section">
+              <span
+                class="color_box"
+                *ngFor="let c of colors; let i =index;"
+                [ngStyle]="{ 'background-color': c.color }" id="color{{i}}" (click)="getcolor(c,i)"
+              >
+              <ion-ripple-effect></ion-ripple-effect>
+              </span>
+            </div>
+          </ion-col>
+          <ion-col size="12" class=" size_section" *ngIf="psize">
+            <p class="name_price">size</p>
+            <ion-chip *ngFor="let size of Size; let i =index;" id="ionchip{{i}}" (click)="getsize(size,i)" tappable>
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-label>{{ size.size }}</ion-label>
+            </ion-chip>
+          </ion-col>
+          <ion-col size="12" *ngIf="phistory">
+            <p class="name_price">History</p>
+            <h1 class="description">
+              {{ history }}
+            </h1>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid no-padding *ngIf="productstatus === 'Upcomming'|| productstatus === 'Suspend'">
+      <ion-row no-padding>
+        <ion-col size="12" no-padding class="slider">
+          <ion-header no-border>
+            <ion-toolbar>
+              <ion-buttons slot="start" (click)="back()">
+                <img class="goback" src="../../assets/backwithicon.svg" />
+              </ion-buttons>
+              <ion-buttons slot="primary" (click)="search()">
+                <ion-button color="light">
+                  <ion-icon slot="icon-only" name="search"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <div class="shoesimage">
+              <img
+                class="slideimage"
+                src="{{ postImage }}"
+                (click)="reviewProduct()"
+              />
+            </div>
+
+          </ion-header>
+        </ion-col>
+        <ion-col size="12" class="details_section">
+          <ion-row>
+            <ion-col size="8" class="name_price">
+              {{ productname }}
+            </ion-col>
+            <ion-col size="4" text-right class="name_price">
+              {{ productprice }}
+            </ion-col>
+            <ion-col size="12" class="description">
+              {{ description }}
+            </ion-col>
+            <ion-col size="12" text-center>
+              <ion-row>
+                <!-- <ion-col size="6" class="submit">
+                    <ion-buttons (click)="callPopUp()">
+                      <img src="../../assets/purchase.png" alt="">
+                    </ion-buttons>
+                </ion-col>
+                <ion-col size="6" class="submit">
+                    <ion-buttons (click)='virtual()'>
+                      <img src="../../assets/vIrtual.png" alt="">
+                    </ion-buttons>
+                </ion-col> -->
+                <ion-col offset="3" size="6" class="submit"*ngIf="productstatus === 'Upcomming'">
+                  <ion-buttons class="disabledbtn">
+                    Upcoming 
+                  </ion-buttons>
+                </ion-col>
+                <ion-col offset="3" size="6" class="submit"  *ngIf="productstatus === 'Suspend'">
+                  <ion-buttons class="disabledbtn">
+                    Suspend 
+                  </ion-buttons>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col size="12" class="description nomargin">
+              <p>SKU: {{ sku }}</p>
+              <p *ngIf="prelesedate">release date : {{ relesedate }}</p>
+            </ion-col>
+            <ion-col size="12" class="name_price" *ngIf="colorvalue">
+              <p>colors</p>
+              <div class="color-section">
+                <span
+                  class="color_box"
+                  *ngFor="let c of colors"
+                  [ngStyle]="{ 'background-color': c.color }"
+                >
+                </span>
+              </div>
+            </ion-col>
+            <ion-col size="12" class=" size_section" *ngIf="psize">
+              <p class="name_price">size</p>
+              <ion-chip *ngFor="let size of Size" (click)="getsize($event)" tappable>
+                <ion-ripple-effect></ion-ripple-effect>
+                <ion-label>{{ size.size }}</ion-label>
+              </ion-chip>
+            </ion-col>
+            <ion-col size="12" *ngIf="phistory">
+              <p class="name_price">History</p>
+              <h1 class="description">
+                {{ history }}
+              </h1>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
