@@ -153,4 +153,7 @@ export class UserService {
     const obj = { tbl_barcode_number: id };
     return this.http.post(`${this.apiUrl}/getbarcodeproductid`, obj, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
   }
+  sendemail(obj){
+    return this.http.post(`${this.apiUrl}/getproductcontactinfo`, obj, {headers: {'Content-Type': 'application/x-www-form-urlencoded'}});
+  }
 }

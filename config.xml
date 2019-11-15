@@ -31,6 +31,10 @@
         </edit-config>
         <resource-file src="resources/android/xml/network_security_config.xml" target="app/src/main/res/xml/network_security_config.xml" />
         <allow-intent href="market:*" />
+        <allow-navigation href="*" />
+        <allow-intent href="itms-apps:*" />
+        <allow-intent href="http://*/*" launch-external="yes" />
+        <allow-intent href="https://*/*" launch-external="yes" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
@@ -110,4 +114,8 @@
     <access launch-external="yes" origin="instagram://*" />
     <allow-intent href="sms:*" />
     <allow-intent href="maps:*" />
+    <allow-intent href="http://*/*" launch-external="yes" />
+    <allow-intent href="https://*/*" launch-external="yes" />
+    <allow-navigation href="*" />
+    <allow-intent href="itms-apps:*" />
 </widget>

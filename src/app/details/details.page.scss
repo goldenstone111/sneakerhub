@@ -136,3 +136,48 @@
     padding: 3vw;
     border-radius: 6vw;
 }
+.minepopup{
+    position: fixed;
+    top: 50%;
+    left: 8%;
+    padding: 4vw;
+    transform: translate(-4%, -50%);
+    background: white;
+    box-shadow: 0vw 0vw 0vw 100vw #0000003b;
+    border-radius: 6vw;
+    z-index: 999;
+    .heading{
+        font-size: 4.5vw;
+        font-weight: 600;
+        text-align: center;
+    }
+    .subheading{
+        font-size: 3.5vw;
+        font-weight: 600;
+        font-style: italic;
+        margin: 0.2vw;
+        padding: 0px;
+    }
+    .label{
+        margin: 0.2vw;
+        padding: 0px;
+    }
+    input{
+        width: 100%;
+        border-radius: 2vw;
+        padding: 1vw;
+        outline: none;
+    }
+    ion-select{
+        border: 1px solid #b5b5b5; 
+        height: 8vw;
+        border-radius: 2vw;
+        padding: 1.8vw;
+    }
+    ion-button{
+        margin-top: 10vw;
+        --background:black;
+        width: 100%;
+        --border-radius:0px;
+    }
+}

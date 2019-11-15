@@ -63,6 +63,42 @@
                 </ion-buttons>
               </ion-col>
             </ion-row>
+            <ion-row class="minepopup" *ngIf="isAlert">
+              <ion-col size="12" class="ion-text-left">
+                <h3 class="heading">RESTRICTED TO IN-STORE PICKUP</h3>
+                <P class="subheading">CONTACT INFO</P>
+                <p class="label">*Product Name</p>
+                <input type="text" readonly value="{{ productname }}"/>
+              </ion-col>
+              <ion-col  size="6" class="ion-text-left">
+                <p class="label">*Product Details</p>
+                <input type="text" readonly value="{{ combinedetail }}"/>
+              </ion-col>
+              <ion-col  size="6" class="ion-text-left">
+                <p class="label">*Quantity</p>
+                <ion-select #cquantity [interfaceOptions]="selectOption"><ion-select-option *ngFor="let q of quantity; let i = index" selected>{{i+1}}</ion-select-option></ion-select>
+              </ion-col>
+              
+              <ion-col size="12" class="ion-text-left">
+                <p class="label">*Full Name</p>
+                <input #cname type="text" placeholder="John Doe" />
+              </ion-col>
+              <ion-col  size="6" class="ion-text-left">
+                <p class="label">*Email Address</p>
+                <input #cemail type="text" placeholder="john@gmail.com"/>
+              </ion-col>
+              <ion-col  size="6" class="ion-text-left">
+                <p class="label">*Phone</p>
+                <input #cnumber type="text" placeholder="1800-0000-1100"/>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button  (click)="emailData(cname.value,cemail.value,cnumber.value,cquantity.value)">
+                  <ion-ripple-effect></ion-ripple-effect>
+                  &nbsp;DONE&nbsp;
+                </ion-button>
+              </ion-col>
+            </ion-row>
+
           </ion-col>
           <ion-col size="12" class="description nomargin">
             <p>SKU: {{ sku }}</p>

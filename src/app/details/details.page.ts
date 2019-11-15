@@ -21,12 +21,14 @@ export class DetailsPage implements OnInit {
   base;
   productId;
   productprice;
+  quantity:any=[];
   productname;
   sku;
   relesedate;
   description;
   history;
   postImage;
+  isAlert= false;
   mobileno;
   slideOpts = {
     initialSlide: 1,
@@ -34,10 +36,16 @@ export class DetailsPage implements OnInit {
     loop: true,
     speed: 2000
   };
+  selectSize;
+  selectColor;
   slideData = [];
   colors: any = [];
   Size: any = [];
   productstatus = '';
+  selectOption={
+    header:"select one"
+  }
+  combinedetail;
   constructor(
     public router: Router,
     public modalCtrl: ModalController,
@@ -51,6 +59,7 @@ export class DetailsPage implements OnInit {
     console.log(this.productId);
     this.checkproductstatus();
     this.getmobilenumber();
+    this.quantity.length=10;
   }
 
   ngOnInit() { }
@@ -62,36 +71,38 @@ export class DetailsPage implements OnInit {
     this.router.navigate(['/searchbar']);
   }
   async callPopUp() {
-  
+    this.combinedetail=this.selectSize + ' / ' + this.selectColor + ' / ' + this.productprice;
+    console.log("details of the data", this.combinedetail);
+    
+    this.isAlert=true;
 
-
-      console.log("Enter In if RewBlock");
+      // console.log("Enter In if RewBlock");
       
-      const alert = await this.alertController.create({
-        header: "Call To The Store",
-        mode: "md",
-        message: "Tab on call button to make a call",
-        cssClass: "primary",
-        buttons: [
-          {
-            text: "Cancel",
-            role: "cancel",
-            cssClass: "secondary",
-            handler: blah => {
-              console.log("Confirm Cancel: blah");
-            }
-          },
-          {
-            text: "call",
-            cssClass: "secondary",
-            handler: () => {
-              this.makecall();
-            }
-          }
-        ]
-      });
+      // const alert = await this.alertController.create({
+      //   header: "Call To The Store",
+      //   mode: "md",
+      //   message: "Tab on call button to make a call",
+      //   cssClass: "primary",
+      //   buttons: [
+      //     {
+      //       text: "Cancel",
+      //       role: "cancel",
+      //       cssClass: "secondary",
+      //       handler: blah => {
+      //         console.log("Confirm Cancel: blah");
+      //       }
+      //     },
+      //     {
+      //       text: "call",
+      //       cssClass: "secondary",
+      //       handler: () => {
+      //         this.makecall();
+      //       }
+      //     }
+      //   ]
+      // });
   
-      await alert.present();
+      // await alert.present();
 
     
     
@@ -198,40 +209,68 @@ export class DetailsPage implements OnInit {
   }
 
   getsize(size,i){
-    var div1:any=[];
-    for(let j=0;j<=this.Size.length;j++){
-       div1[j] = document.getElementById( 'ionchip'+j );
-       console.log("div ", div1[j]);
-       
-       div1[j].style.backgroundColor='#fff';
-       div1[j].style.color='#000';
-    }
-    console.log("size data ", size,i);
-    var div = document.getElementById( 'ionchip'+i );
-    console.log(div.style.backgroundColor);
     
-    if(div.style.backgroundColor=='rgb(0, 0, 0)'){
-      div.style.backgroundColor='#fff';
-      div.style.color='#000';
+    for(let j=0;j<this.Size.length;j++){
+      var div = document.getElementById( 'ionchip'+j );
+      if(j==i){
+        div.style.backgroundColor='#000';
+        div.style.color='#fff';
+      }
+      else{
+        div.style.backgroundColor='#fff';
+        div.style.color='#000';
+        this.selectSize='';
+      }
     }
-    else{
-      div.style.backgroundColor='#000';
-      div.style.color='#fff';
-    }
-    
-
+    this.selectSize=size.size;
+    console.log("selected size",this.selectSize);
   }
+
   getcolor(color,i){
-    for(let j=0;j<=this.colors.length;j++){
-      var div1 = document.getElementById( 'color'+j );
-      div1.style.zoom='1'
+    for(let j=0;j<this.colors.length;j++){
+      var div = document.getElementById( 'color'+j );
+      if(j==i){
+        div.style.zoom='1.3'
+      }
+      else{
+        div.style.zoom='1'
+        this.selectSize='';
+      }
     }
-    console.log("size data ", color,i);
-    var div = document.getElementById( 'color'+i );
-    if( div.style.zoom=='1.3'){
-      div.style.zoom='1'    
-    } else{
-      div.style.zoom='1.3'
+    this.selectColor=color.color;
+    console.log("selected size",this.selectColor);
+   
+    // var div = document.getElementById( 'color'+i );
+    // if( div.style.zoom=='1.3'){
+          
+    //   this.selectColor='';
+    // } else{
+      
+    //   this.selectColor=color.color;
+    // }
+  }
+
+  emailData(a,b,c,d){ 
+    this.authService.presentLoading();
+    const obj={
+      tbl_product_name:this.productname,
+      tbl_product_details:this.combinedetail,
+      quantity: d,
+      username: a,
+      useremail:b,
+      userphone:c
     }
+    this.authService.sendemail(obj).subscribe((result:any)=>{
+      this.isAlert=false;
+      if(result.status==200){
+        this.authService.presentToast(result.success);
+        this.authService.loadingDismiss();
+      } else {
+        this.authService.presentToast(result.error);
+        this.authService.loadingDismiss();
+      }
+       
+    })
+
   }
 }

@@ -16,8 +16,8 @@
       <ion-segment-button class="segment_button" value="instagram">
         <p>Instagram</p>
       </ion-segment-button>
-      <ion-segment-button class="segment_button" value="facebook">
-        <p>Facebook</p>
+      <ion-segment-button class="segment_button" value="youtube">
+        <p>Youtube</p>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -31,16 +31,17 @@
             <ion-list *ngSwitchCase="'instagram'">
               <ion-row>
                 <ion-col size="12" no-padding  class="shoe-box">
-                  <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-                  <iframe src="https://lightwidget.com/widgets/40ea4149ce325da7b584f588e06f152e.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe>
-
+                  <!-- <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script> -->
+                  <!-- <iframe src="https://lightwidget.com/widgets/40ea4149ce325da7b584f588e06f152e.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;overflow:hidden;"></iframe> -->
+                    <!-- LightWidget WIDGET  --> <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+                    <iframe src="https://dev.hawkscode.com.au/sneaker/assets/Instagram/instafeed.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width:100%;border:0;height:100vh"></iframe>
                 </ion-col>
               </ion-row>
             </ion-list>
-            <ion-list *ngSwitchCase="'facebook'">
+            <ion-list *ngSwitchCase="'youtube'">
               <ion-row>
                 <ion-col size="12" no-padding  class="shoe-box">
-                  <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsneakerhub&tabs=timeline&width=375&height=740&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="375" height="740" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                  <iframe src="https://dev.hawkscode.com.au/sneaker/assets/youtube/youtubefeed.html" style="border:none;overflow:hidden" scrolling="no" frameborder="0" style="width:100%;border:0;height:100vh"allowTransparency="true" allow="encrypted-media"></iframe>
                 </ion-col>
               </ion-row>
             </ion-list>

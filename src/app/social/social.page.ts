@@ -10,18 +10,6 @@ export class SocialPage implements OnInit {
   CategoryData: any;
   category1: string;
   constructor(public loadingController: LoadingController,public router :Router) {
-    this.CategoryData=[
-      {S_name:"Air Jordan V (5) Retro",s_id:1,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:2,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:3,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:4,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:5,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:6,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:7,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:8,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:9,s_price:189.99},
-      {S_name:"Air Jordan V (5) Retro",s_id:10,s_price:189.99},
-    ];
    }
 
   ngOnInit() {
